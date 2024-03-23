@@ -1,0 +1,27 @@
+<mapper namespace="com.innowise.hackathon.data.CurrencyRepository">
+    <resultMap id="currencyResultMap" type="com.innowise.hackathon.entity.CurrencyEntity">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Long" resultType="com.innowise.hackathon.entity.CurrencyEntity">
+        SELECT * FROM currencyEntity WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="currencyResultMap">
+        SELECT * FROM currencyEntity
+    </select>
+
+    <insert id="save" parameterType="com.innowise.hackathon.entity.CurrencyEntity">
+        INSERT INTO currencyEntity (name, price) VALUES (#{name}, #{price})
+    </insert>
+
+    <update id="update" parameterType="com.innowise.hackathon.entity.CurrencyEntity">
+        UPDATE currencyEntity SET name = #{name}, price = #{price} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="com.innowise.hackathon.entity.CurrencyEntity">
+        DELETE FROM currencyEntity WHERE id = #{id}
+    </delete>
+</mapper>
